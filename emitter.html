@@ -1,0 +1,188 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<style type="text/css">
+    table { border: 1px solid #000; border-collapse: collapse; }
+    td { border-top: 1px solid #000; border-left: 1px solid #000; }
+    td.selected { border: 1px solid #F00; }
+</style>
+
+<script src="../socket.io/socket.io.js"></script>
+
+<script>
+  var socket = io.connect('http://192.168.3.13');
+//    socket.emit('newvalue', {"x":"' . $randomX . '", "y":"' . $randomY . '", "z":"' . $randomZ . '"});
+  function callEmitNewValue () {
+	setTimeout(emitNewValue, 1000);
+  }
+
+  function emitNewValue() {
+    var x=Math.floor(Math.random()*10);
+    var y=Math.floor(Math.random()*10);
+    var z=Math.floor(Math.random()*10);
+    $('#message').text("X = " + x + ", Y = " + y + ", value = " + z);
+    $($('#testTable')[0].rows[x].cells[y]).text(z);
+    $($('#testTable')[0].rows[x].cells[y]).animate({'backgroundColor' : '#ffff99'}, 10);
+    $($('#testTable')[0].rows[x].cells[y]).animate({'backgroundColor' : '#ffffff'}, 2500);
+//    socket.emit('newvalue', {"x":"5", "y":"6", "z":"7"});
+    var message = "{\"x\":\"" + x + "\", \"y\":\"" + y + "\", \"z\":\"" + z + "\"}";
+//    console.log(message);
+    socket.emit('newvalue', message);
+    callEmitNewValue();
+  }
+
+  callEmitNewValue();
+</script>
+
+<script src="jquery/jquery-1.7.2.min.js"></script>
+<script src="jquery/json2.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+  function clearTable() {
+    for (i = 0; i < 10; i++) {
+      for (j = 0; j < 10; j++) {
+        $($('#testTable')[0].rows[i].cells[j]).html("&nbsp;");
+      }
+    }
+  }
+</script>
+
+</head>
+<body>
+	<center>
+	<div id="message">&nbsp;</div>
+	<table id="testTable" border="1">
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+	</table>
+	<button onClick="clearTable()">Clear Table</button>
+	<p>
+		<strong>Data values this page sends are displayed in this table.</strong>
+	</p>
+
+	</center>
+</body>
+</html>
+

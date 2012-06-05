@@ -1,0 +1,3 @@
+Node.js, socket.io demo 1. Send, relay, and receive real-time messages (x,y,z triplet) which are posted in a table.
+
+Also, form submits are handled by Express Framework.

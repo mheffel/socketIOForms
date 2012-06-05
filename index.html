@@ -1,0 +1,202 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<style type="text/css">
+    table { border: 1px solid #000; border-collapse: collapse; }
+    td { border-top: 1px solid #000; border-left: 1px solid #000; }
+    td.selected { border: 1px solid #F00; }
+</style>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<script src="../socket.io/socket.io.js"></script>
+<script src="jquery/jquery-1.7.2.min.js"></script>
+<script src="jquery/json2.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+<script>
+  var socket = io.connect('http://192.168.3.13');
+  socket.on('update', function (data) {
+//    console.log("Socket.on reached");
+//    console.log(data);
+    var message = jQuery.parseJSON(data);
+//    console.log(message.x);
+//    console.log(data.x);
+//    console.log(data.y);
+//    console.log(data.z);
+    $('#message').text("X = " + message.x + ", Y = " + message.y + ", value = " + message.z);
+    $($('#testTable')[0].rows[message.x].cells[message.y]).text(message.z);
+    $($('#testTable')[0].rows[message.x].cells[message.y]).animate({'backgroundColor' : '#ffff99'}, 10);
+    $($('#testTable')[0].rows[message.x].cells[message.y]).animate({'backgroundColor' : '#ffffff'}, 2500);
+  });
+</script>
+
+<script type="text/javascript">
+  function clearTable() {
+    for (i = 0; i < 10; i++) {
+      for (j = 0; j < 10; j++) {
+        $($('#testTable')[0].rows[i].cells[j]).html("&nbsp;");
+      }
+    }
+  }
+</script>
+</head>
+<body>
+	<center>
+	<h3>Node.js (Ajax Push) with form submit demo</h3>
+	</center>
+	<p>
+		<a href="http://www.nodejs.org">Node.js</a> is a platform built on <a href="http://code.google.com/p/v8/">Chrome's JavaScript runtime</a> for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.
+	</p>
+	
+	<p>In this demo a 10 X 10 table displays values contained in
+		messages sent (pushed) to this web browser. Each message contains an
+		X, Y, Z triplet representing the table row, column, and display value.</p>
+	<p>
+		Contact <a href="mailto:mheffelfinger@pesa.com">Mike Heffelfinger</a>
+		(256) 327-8039 for further information.
+	</p>
+	<center>
+<form method="post" action="/">
+<table>
+  <tr><td align="right">First Name:</td><td><input type="text" name="firstName" /></td></tr>
+  <tr><td align="right">Last Name:</td><td><input type="text" name="lastName" /></td></tr>
+  </table>
+  <input type="submit" value="Submit" />
+</form>
+
+	<div id="time">&nbsp;</div>
+	<div id="message">&nbsp;</div>
+	<table id="testTable" border="1">
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+		<tr>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+			<td width="25px" height="25px">&nbsp;</td>
+		</tr>
+	</table>
+	<button onClick="clearTable()">Clear Table</button>
+	<p>
+		<strong>Data values received are displayed in this table.</strong>
+	</p>
+	<p>Note: The <a target="newWindow" href="emitter.html">helper program</a> which sends messages to the
+		node server must be running while viewing this page; otherwise, no messages
+		will be received.</p>
+	</center>
+</body>
+</html>
+
