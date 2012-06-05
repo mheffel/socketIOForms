@@ -12,7 +12,7 @@ app.post('/', function(req, res){
   console.log(req.body);
   console.log(req.body.firstName);
   console.log(req.body.lastName);
-  res.redirect('back');
+  res.send();
 });
 
 io.sockets.on('connection', function (socket) {
